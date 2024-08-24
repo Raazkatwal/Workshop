@@ -93,3 +93,10 @@ venv.bak/
 # Windows
 Thumbs.db
 *.lnk
+
+# Ignore compiled Python files
+polls/__pycache__/
+
+# Ignore all migrations except __init__.py
+polls/migrations/*
+!polls/migrations/__init__.py
