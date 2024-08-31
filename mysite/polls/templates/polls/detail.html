@@ -1,1 +1,25 @@
-{{question}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question {{ question.id }}</title>
+</head>
+<body>
+    <form action="{% url 'vote' question.id %}" method="post">
+        <fieldset>
+            <div>
+                <h1>{{ question.question_text }}</h1>
+            </div>
+            {% if error_message %}
+                <p><strong>{{ error_message }}</strong></p>
+            {% endif %}
+            {% for choice in question.choice_set.all %}
+                <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}">
+                <label for="choice{{foorloop.counter}}">{{ choice.choice_text }}</label><br>
+            {% endfor %}
+        </fieldset>
+        <input type="submit" value="Vote">
+    </form>
+</body>
+</html>
